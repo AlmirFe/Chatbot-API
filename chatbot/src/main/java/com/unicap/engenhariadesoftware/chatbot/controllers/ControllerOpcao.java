@@ -22,6 +22,7 @@ public class ControllerOpcao {
 	@Autowired
 	OpcaoRepositorio opcaoRepositorio;
 	
+	
 	@GetMapping("/opcoes")
 	public List<Opcao> listaOpcao(){
 		return opcaoRepositorio.findAll();
@@ -42,6 +43,4 @@ public class ControllerOpcao {
 	public Opcao alteraOpcao(@RequestBody Opcao opcao){
 		return opcaoRepositorio.save(opcao);
 	}
-	
-	
 }

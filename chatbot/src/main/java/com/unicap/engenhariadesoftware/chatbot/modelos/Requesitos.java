@@ -9,26 +9,26 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TB_OPCAO")
-public class Opcao implements Serializable{
+@Table(name= "REQUESITOS_TB")
+public class Requesitos implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id; 
-	private String opcao;
-	private String resposta; //aqui vai a chave estrangeira
+	private long id;
+	private String pergunta;
+	private String resposta;
+	
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getOpcao() {
-		return opcao;
+	public String getPergunta() {
+		return pergunta;
 	}
-	public void setOpcao(String opcao) {
-		this.opcao = opcao;
+	public void setPergunta(String pergunta) {
+		this.pergunta = pergunta;
 	}
 	public String getResposta() {
 		return resposta;
@@ -39,7 +39,5 @@ public class Opcao implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	} 
-	
-	
 
 }
