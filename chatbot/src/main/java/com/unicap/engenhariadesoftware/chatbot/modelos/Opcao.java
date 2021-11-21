@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,7 +18,7 @@ public class Opcao implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id; 
 	private String opcao;
-	private String resposta; //aqui vai a chave estrangeira
+	private long id_tabela;
 	public long getId() {
 		return id;
 	}
@@ -30,15 +31,16 @@ public class Opcao implements Serializable{
 	public void setOpcao(String opcao) {
 		this.opcao = opcao;
 	}
-	public String getResposta() {
-		return resposta;
+	public long getId_tabela() {
+		return id_tabela;
 	}
-	public void setResposta(String resposta) {
-		this.resposta = resposta;
+	public void setId_tabela(long id_tabela) {
+		this.id_tabela = id_tabela;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	} 
+	
 	
 	
 

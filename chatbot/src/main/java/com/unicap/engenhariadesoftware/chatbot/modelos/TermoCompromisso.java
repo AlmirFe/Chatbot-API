@@ -18,6 +18,7 @@ public class TermoCompromisso implements Serializable{
 	private long id;
 	private String pergunta;
 	private String resposta;
+	private long modalidadeid;
 	
 	public long getId() {
 		return id;
@@ -36,6 +37,12 @@ public class TermoCompromisso implements Serializable{
 	}
 	public void setResposta(String resposta) {
 		this.resposta = resposta;
+	}
+	public long getModalidadeid() {
+		return modalidadeid;
+	}
+	public void setModalidadeid(long modalidadeid) {
+		this.modalidadeid = modalidadeid;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
