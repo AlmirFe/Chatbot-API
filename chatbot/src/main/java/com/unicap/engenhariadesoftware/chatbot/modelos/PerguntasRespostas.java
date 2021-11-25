@@ -9,16 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name= "DIREITOS_TB")
-public class Direitos implements Serializable{
+@Table(name="PERGUNTAS_RESPOSTAS_TB")
+public class PerguntasRespostas implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	private String pergunta;
-	private String resposta;
-	private long modalidadeid;
+	private String modalidade;
+	private String perguntas;
+	private String respostas;
 	
 	public long getId() {
 		return id;
@@ -26,26 +26,26 @@ public class Direitos implements Serializable{
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getPergunta() {
-		return pergunta;
+	public String getModalidade() {
+		return modalidade;
 	}
-	public void setPergunta(String pergunta) {
-		this.pergunta = pergunta;
+	public void setModalidade_id(String modalidade) {
+		this.modalidade = modalidade;
 	}
-	public String getResposta() {
-		return resposta;
+	public String getPerguntas() {
+		return perguntas;
 	}
-	public void setResposta(String resposta) {
-		this.resposta = resposta;
+	public void setPerguntas(String perguntas) {
+		this.perguntas = perguntas;
 	}
-	public long getModalidadeid() {
-		return modalidadeid;
+	public String getRespostas() {
+		return respostas;
 	}
-	public void setModalidadeid(long modalidadeid) {
-		this.modalidadeid = modalidadeid;
+	public void setRespostas(String respostas) {
+		this.respostas = respostas;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	} 
+	}
 
 }

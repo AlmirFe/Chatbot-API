@@ -16,7 +16,7 @@ import com.unicap.engenhariadesoftware.chatbot.modelos.Opcao;
 import com.unicap.engenhariadesoftware.chatbot.repositorios.OpcaoRepositorio;
 
 @RestController
-@RequestMapping(value="/modalidades")
+@RequestMapping(value="/modalidade")
 public class ControllerOpcao {
 
 	@Autowired

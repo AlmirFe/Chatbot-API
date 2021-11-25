@@ -1,45 +1,46 @@
 package com.unicap.engenhariadesoftware.chatbot.modelos;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name="TB_OPCAO")
+@Table(name="OPCAO_TB")
 public class Opcao implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id; 
-	private String opcao;
-	private long id_tabela;
+	private String nome;
+	@OneToMany
+	private List<PerguntasRespostas> modalidade;
+	
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getOpcao() {
-		return opcao;
+	public List<PerguntasRespostas> getModalidade() {
+		return modalidade;
 	}
-	public void setOpcao(String opcao) {
-		this.opcao = opcao;
-	}
-	public long getId_tabela() {
-		return id_tabela;
-	}
-	public void setId_tabela(long id_tabela) {
-		this.id_tabela = id_tabela;
+	public void setModalidade(PerguntasRespostas pergunta) {
+		modalidade.add(pergunta);
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	} 
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	
 	
 	

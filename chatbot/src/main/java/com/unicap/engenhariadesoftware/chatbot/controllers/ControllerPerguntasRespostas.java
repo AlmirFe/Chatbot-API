@@ -4,74 +4,39 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.unicap.engenhariadesoftware.chatbot.modelos.Direitos;
-import com.unicap.engenhariadesoftware.chatbot.modelos.Jornada;
-import com.unicap.engenhariadesoftware.chatbot.modelos.Requesitos;
-import com.unicap.engenhariadesoftware.chatbot.modelos.TermoCompromisso;
-import com.unicap.engenhariadesoftware.chatbot.repositorios.DireitosRepositorio;
-import com.unicap.engenhariadesoftware.chatbot.repositorios.JornadaRepositorio;
-import com.unicap.engenhariadesoftware.chatbot.repositorios.RequesitosRepositorio;
-import com.unicap.engenhariadesoftware.chatbot.repositorios.TermoCompromissoRepositorio;
+import com.unicap.engenhariadesoftware.chatbot.repositorios.OpcaoRepositorio;
+import com.unicap.engenhariadesoftware.chatbot.repositorios.PerguntasRespostasRepositorio;
+import com.unicap.engenhariadesoftware.chatbot.modelos.PerguntasRespostas;
 
 @RestController
-@RequestMapping(value="/pr")
+@RequestMapping(value="/qa")
 public class ControllerPerguntasRespostas {
 	
 	@Autowired
-	DireitosRepositorio direitosRepositorio;
-	
+	PerguntasRespostasRepositorio PR;
 	@Autowired
-	JornadaRepositorio jornadaRepositorio;
+	OpcaoRepositorio opcoesRepositorio;
 	
-	@Autowired
-	RequesitosRepositorio requesitosRepositorio;
-	
-	@Autowired
-	TermoCompromissoRepositorio termoCompromissoRepositorio;
-	
-	
-	@GetMapping("/direitos")
-	public List<Direitos> listaDireito(){
-		return direitosRepositorio.findAll();
+	@PostMapping("/pergunta/{id}")
+	public PerguntasRespostas adicionaPergunta(@RequestBody PerguntasRespostas pergunta, @PathVariable(value="id") long id) {
+		opcoesRepositorio.findById(id).setModalidade(pergunta); //teste temporario, precisa fazer validação
+		return PR.save(pergunta);
 	}
-	@GetMapping("/jornada")
-	public List<Jornada> listaJornada(){
-		return jornadaRepositorio.findAll();
+	@GetMapping("/perguntas/{id}")
+	public List<PerguntasRespostas> listaPerguntaModalidade(@PathVariable(value="id") long id){
+		return opcoesRepositorio.findById(id).getModalidade();
 	}
-	@GetMapping("/requesitos")
-	public List<Requesitos> listaRequesitos(){
-		return requesitosRepositorio.findAll();
-	}
-	@GetMapping("/termo")
-	public List<TermoCompromisso> listaTermo(){
-		return termoCompromissoRepositorio.findAll();
+	@GetMapping("/pergunta/{modalidade_id}/{pergunta_id}")
+	public PerguntasRespostas retornaPergunta(@PathVariable(value="modalidade_id") long modalidade, @PathVariable(value="pergunta_id") int id) {
+		return opcoesRepositorio.findById(modalidade).getModalidade().get(id-1);
 	}
 	
 	
-	@PostMapping("/direitos")
-	public Direitos adicionaDireitos(@RequestBody Direitos direito){
-		direito.setModalidadeid(1);
-		return direitosRepositorio.save(direito);
-	}
-	@PostMapping("/jornada")
-	public Jornada adicionaJornada(@RequestBody Jornada jornada){
-		jornada.setModalidadeid(2);
-		return jornadaRepositorio.save(jornada);
-	}
-	@PostMapping("/requesitos")
-	public Requesitos adicionaRequesitos(@RequestBody Requesitos requesitos){
-		requesitos.setModalidadeid(3);
-		return requesitosRepositorio.save(requesitos);
-	}
-	@PostMapping("/termo")
-	public TermoCompromisso adicionaTermo(@RequestBody TermoCompromisso termoCompromisso){
-		termoCompromisso.setModalidadeid(4);
-		return termoCompromissoRepositorio.save(termoCompromisso);
-	}
 
 }
