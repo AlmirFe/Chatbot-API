@@ -29,7 +29,7 @@ public class PerguntasRespostas implements Serializable{
 	public String getModalidade() {
 		return modalidade;
 	}
-	public void setModalidade_id(String modalidade) {
+	public void setModalidade(String modalidade) {
 		this.modalidade = modalidade;
 	}
 	public String getPerguntas() {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.unicap.engenhariadesoftware.chatbot.repositorios.OpcaoRepositorio;
 import com.unicap.engenhariadesoftware.chatbot.repositorios.PerguntasRespostasRepositorio;
+import com.unicap.engenhariadesoftware.chatbot.modelos.Opcao;
 import com.unicap.engenhariadesoftware.chatbot.modelos.PerguntasRespostas;
 
 @RestController
@@ -25,12 +26,32 @@ public class ControllerPerguntasRespostas {
 	
 	@PostMapping("/pergunta/{id}")
 	public PerguntasRespostas adicionaPergunta(@RequestBody PerguntasRespostas pergunta, @PathVariable(value="id") long id) {
-		opcoesRepositorio.findById(id).setModalidade(pergunta); //teste temporario, precisa fazer validação
-		return PR.save(pergunta);
+		
+		Opcao opcao = opcoesRepositorio.findById(id); 
+		
+		if(opcao != null) {
+			
+			pergunta.setModalidade(opcao.getNome());
+			opcao.setModalidade(pergunta); 
+			return PR.save(pergunta);
+		}else {
+			
+			return null;
+		}
 	}
 	@GetMapping("/perguntas/{id}")
 	public List<PerguntasRespostas> listaPerguntaModalidade(@PathVariable(value="id") long id){
-		return opcoesRepositorio.findById(id).getModalidade();
+		
+		Opcao opcao = opcoesRepositorio.findById(id);
+		
+		if(opcao != null) {
+			
+			return opcao.getModalidade();
+		}else {
+			
+			return null;
+		}
+		
 	}
 	@GetMapping("/pergunta/{modalidade_id}/{pergunta_id}")
 	public PerguntasRespostas retornaPergunta(@PathVariable(value="modalidade_id") long modalidade, @PathVariable(value="pergunta_id") int id) {
