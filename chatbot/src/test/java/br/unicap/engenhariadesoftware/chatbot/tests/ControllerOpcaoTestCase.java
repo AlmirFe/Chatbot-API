@@ -1,24 +1,27 @@
 package br.unicap.engenhariadesoftware.chatbot.tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.unicap.engenhariadesoftware.chatbot.ChatbotApplication;
+import com.unicap.engenhariadesoftware.chatbot.controllers.ControllerOpcao;
+import com.unicap.engenhariadesoftware.chatbot.modelos.Opcao;
+import com.unicap.engenhariadesoftware.chatbot.repositorios.OpcaoRepositorio;
+
 import static org.mockito.Mockito.mock;
 
 import java.util.List;
-import com.unicap.engenhariadesoftware.chatbot.modelos.Opcao;
-import com.unicap.engenhariadesoftware.chatbot.repositorios.OpcaoRepositorio;
-import com.unicap.engenhariadesoftware.chatbot.controllers.ControllerOpcao;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.web.bind.annotation.PathVariable;
-
+@SpringBootTest(classes=ChatbotApplication.class)
 class ControllerOpcaoTestCase {
 	
-	private OpcaoRepositorio testRepository = mock(OpcaoRepositorio.class);
-	ControllerOpcao controller = new ControllerOpcao(testRepository);
-
+	@Autowired
+	ControllerOpcao controller;
+	
 	@Test
 	void verificaRetornoDasListas() {
 		List<Opcao> lista = controller.listaOpcao();
-		assertEquals("direto",lista.get(0));
 	}
+	
 }

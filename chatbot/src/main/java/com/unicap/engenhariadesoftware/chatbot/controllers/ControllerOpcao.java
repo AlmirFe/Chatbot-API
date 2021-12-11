@@ -19,11 +19,8 @@ import com.unicap.engenhariadesoftware.chatbot.repositorios.OpcaoRepositorio;
 @RequestMapping(value="/modalidade")
 public class ControllerOpcao {
 
-	private final OpcaoRepositorio opcaoRepositorio;
-	
-	public ControllerOpcao (OpcaoRepositorio opcaoRepositorio) {
-		this.opcaoRepositorio = opcaoRepositorio;
-	}
+	@Autowired
+	private OpcaoRepositorio opcaoRepositorio;
 	
 	@GetMapping("/opcoes")
 	public List<Opcao> listaOpcao(){
