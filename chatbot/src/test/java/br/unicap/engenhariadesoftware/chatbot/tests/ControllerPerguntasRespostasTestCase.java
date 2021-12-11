@@ -30,26 +30,26 @@ class ControllerPerguntasRespostasTestCase {
 	}
 	
 	@Test
-	void caseListarNotNull() {
+	void caseListarNotNull() {//nesse teste, o objetivo é que não retorne nulo ao tentar listar a modalidade de id 1
 		List<PerguntasRespostas>  lpr;
 		lpr =  cpr.listaPerguntaModalidade(1);
 		assertNotEquals(null, lpr);
 	}
 	
 	@Test
-	void caseListarNull() {
+	void caseListarNull() {//nesse teste, o intuito é que retone nulo ao tentar pegar uma modalidade que não existe
 		List<PerguntasRespostas>  lpr;
 		lpr =  cpr.listaPerguntaModalidade(-1);
 		assertEquals(null, lpr);
 	}
 	
 	@Test
-	void caseBuscarModalidadeNull() {//nesse teste, o intuito é que retorne nulo ao tentar adicionar em uma modalidade inexistente
+	void caseBuscarModalidadeNull() {//nesse teste, o intuito é que não retorne nulo ao procurar uma pergunta na posição 1
 		long modalidade = 1;
 		int pergunta = 1;
 		PerguntasRespostas  result;
 		result = cpr.retornaPergunta(modalidade,pergunta);
-		assertEquals(null, result);
+		assertNotEquals(null, result);
 	}
 	
 }
