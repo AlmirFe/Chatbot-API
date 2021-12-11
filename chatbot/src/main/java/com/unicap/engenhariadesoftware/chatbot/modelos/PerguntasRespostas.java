@@ -20,6 +20,7 @@ public class PerguntasRespostas implements Serializable{
 	private String perguntas;
 	private String respostas;
 	
+	
 	public long getId() {
 		return id;
 	}

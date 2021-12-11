@@ -24,18 +24,20 @@ public class ControllerPerguntasRespostas {
 	@Autowired
 	OpcaoRepositorio opcoesRepositorio;
 	
+	
 	@PostMapping("/pergunta/{id}")
 	public PerguntasRespostas adicionaPergunta(@RequestBody PerguntasRespostas pergunta, @PathVariable(value="id") long id) {
 		
 		Opcao opcao = opcoesRepositorio.findById(id); 
 		
+		
 		if(opcao != null) {
-			
+			System.out.println("########################## Diferente de nulo ##############");
 			pergunta.setModalidade(opcao.getNome());
 			opcao.setModalidade(pergunta); 
 			return PR.save(pergunta);
 		}else {
-			
+			System.out.println("########################## Igual a nulo ##############");
 			return null;
 		}
 	}

@@ -10,11 +10,15 @@ import com.unicap.engenhariadesoftware.chatbot.ChatbotApplication;
 import com.unicap.engenhariadesoftware.chatbot.controllers.ControllerOpcao;
 import com.unicap.engenhariadesoftware.chatbot.modelos.Opcao;
 
+
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 @SpringBootTest(classes=ChatbotApplication.class)
 class ControllerOpcaoTestCase {
 	
+
 	@Autowired
 	ControllerOpcao controller;
 	String[] nomes = {"Direitos", "Jornada", "Termo", "Requisitos"};
@@ -34,6 +38,7 @@ class ControllerOpcaoTestCase {
 	
 	/*Esse teste valida o conteúdo da lista retornada
 	 * valiando se os objetos são nulos, seus nomes e ids.*/
+
 	@Test
 	void verificaIntegridadeDeListaOpcao() {
 		List<Opcao> lista = controller.listaOpcao();
